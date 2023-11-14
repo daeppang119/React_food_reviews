@@ -1,11 +1,27 @@
 import React, { useState } from "react";
-import Input from "./Input";
-import Button from "./Button";
 import uuid from "react-uuid";
+import Input from "./Input";
 
-export default function Form({ list, setList }) {
-  const [nickName, setNickName] = useState("");
-  const [contents, setContents] = useState("");
+export default function Form({ list, setList, regions }) {
+  const [nickNameInputValue, setNickNameInputValue] = useState("");
+  const [contextInputValue, setContextInputValue] = useState("");
+
+  const [checkedName, setCheckedName] = useState("서울");
+
+  function makeChekBox(name) {
+    return (
+      <div>
+        <input
+          type="checkbox"
+          checked={name === checkedName}
+          onChange={() => {
+            setCheckedName(name);
+          }}
+        />
+        <label>{name}</label>
+      </div>
+    );
+  }
 
   const id = uuid();
 
@@ -14,23 +30,31 @@ export default function Form({ list, setList }) {
 
     const newList = {
       id: id,
-      nickName: nickName,
-      contents: contents,
+      nickname: nickNameInputValue,
+      context: contextInputValue,
+      region: checkedName,
     };
+
+    if (nickNameInputValue === "") {
+      return alert("닉네임이 입력되지 않았습니다.");
+    } else if (contextInputValue === "") {
+      return alert("내용이 입력되지 않았습니다.");
+    }
 
     setList([...list, newList]);
 
-    setNickName("");
-    setContents("");
+    setNickNameInputValue("");
+    setContextInputValue("");
   };
 
   return (
     <form onSubmit={onSubmit}>
       <span>닉네임</span>
-      <Input value={nickName} setValue={setNickName} />
+      <Input value={nickNameInputValue} setValue={setNickNameInputValue} />
       <span>내용</span>
-      <Input value={contents} setValue={setContents} />
-      <Button />
+      <Input value={contextInputValue} setValue={setContextInputValue} />
+      {regions.map(makeChekBox)}
+      <button>등록</button>
     </form>
   );
 }
