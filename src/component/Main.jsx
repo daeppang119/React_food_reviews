@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import Form from "./Form";
 import List from "./List";
+import styled from "styled-components";
 
-export default function Main({ list, setList }) {
-  console.log(list);
-  const regions = ["서울", "수원", "인천", "대구", "부산", "제주"];
+const StUl = styled.ul`
+  display: flex;
+`;
 
-  // const [selectedRegion, setSelectedRegion] = useState("전국");
+export default function Main() {
+  const [lists, setLists] = useState([]);
+
+  const regions = ["서울", "경기", "인천", "대구", "부산", "제주"];
+
   const [isRegionShown, setIsRegionShown] = useState(true);
   const [isSeoulShown, setIsSeoulShown] = useState(true);
   const [isSuwonShown, setIsSuwonShown] = useState(true);
@@ -16,8 +21,8 @@ export default function Main({ list, setList }) {
   const [isJejuShown, setIsJejuShown] = useState(true);
 
   return (
-    <>
-      <ul>
+    <div>
+      <StUl>
         <li>
           <a
             onClick={() => {
@@ -123,60 +128,68 @@ export default function Main({ list, setList }) {
             제주
           </a>
         </li>
-      </ul>
-
-      <Form list={list} setList={setList} regions={regions} />
-      <h3>맛집리스트...🔥</h3>
+      </StUl>
+      <Form list={lists} setList={setLists} regions={regions} />
       {isSeoulShown === true ? (
         <List
-          list={list.filter((regionsItem) => regionsItem.region === regions[0])}
-          setList={setList}
+          list={lists.filter(
+            (regionsItem) => regionsItem.region === regions[0]
+          )}
+          setList={setLists}
         />
       ) : (
         ""
       )}
       {isSuwonShown === true ? (
         <List
-          list={list.filter((regionsItem) => {
+          list={lists.filter((regionsItem) => {
             return regionsItem.region === regions[1];
           })}
-          setList={setList}
+          setList={setLists}
         />
       ) : (
         ""
       )}
       {isIncheonShown === true ? (
         <List
-          list={list.filter((regionsItem) => regionsItem.region === regions[2])}
-          setList={setList}
+          list={lists.filter(
+            (regionsItem) => regionsItem.region === regions[2]
+          )}
+          setList={setLists}
         />
       ) : (
         ""
       )}
       {isDaeguShown === true ? (
         <List
-          list={list.filter((regionsItem) => regionsItem.region === regions[3])}
-          setList={setList}
+          list={lists.filter(
+            (regionsItem) => regionsItem.region === regions[3]
+          )}
+          setList={setLists}
         />
       ) : (
         ""
       )}
       {isBusanShown === true ? (
         <List
-          list={list.filter((regionsItem) => regionsItem.region === regions[4])}
-          setList={setList}
+          list={lists.filter(
+            (regionsItem) => regionsItem.region === regions[4]
+          )}
+          setList={setLists}
         />
       ) : (
         ""
       )}
       {isJejuShown === true ? (
         <List
-          list={list.filter((regionsItem) => regionsItem.region === regions[5])}
-          setList={setList}
+          list={lists.filter(
+            (regionsItem) => regionsItem.region === regions[5]
+          )}
+          setList={setLists}
         />
       ) : (
         ""
       )}
-    </>
+    </div>
   );
 }

@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import uuid from "react-uuid";
 import Input from "./Input";
+import styled from "styled-components";
+
+const StRadio = styled.div`
+  display: flex;
+`;
 
 export default function Form({ list, setList, regions }) {
   const [nickNameInputValue, setNickNameInputValue] = useState("");
@@ -12,7 +17,7 @@ export default function Form({ list, setList, regions }) {
     return (
       <div>
         <input
-          type="checkbox"
+          type="radio"
           checked={name === checkedName}
           onChange={() => {
             setCheckedName(name);
@@ -53,7 +58,7 @@ export default function Form({ list, setList, regions }) {
       <Input value={nickNameInputValue} setValue={setNickNameInputValue} />
       <span>내용</span>
       <Input value={contextInputValue} setValue={setContextInputValue} />
-      {regions.map(makeChekBox)}
+      <StRadio>{regions.map(makeChekBox)}</StRadio>
       <button>등록</button>
     </form>
   );
