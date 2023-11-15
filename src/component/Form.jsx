@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const StRadio = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
 export default function Form({ list, setList, regions }) {
@@ -54,9 +55,9 @@ export default function Form({ list, setList, regions }) {
 
   return (
     <form onSubmit={onSubmit}>
-      <span>닉네임</span>
+      <p>닉네임</p>
       <Input value={nickNameInputValue} setValue={setNickNameInputValue} />
-      <span>내용</span>
+      <p>내용</p>
       <Input value={contextInputValue} setValue={setContextInputValue} />
       <StRadio>{regions.map(makeChekBox)}</StRadio>
       <button>등록</button>

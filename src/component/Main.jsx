@@ -5,191 +5,60 @@ import styled from "styled-components";
 
 const StUl = styled.ul`
   display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
 `;
 
-export default function Main() {
-  const [lists, setLists] = useState([]);
+const StClick = styled.li`
+  position: relative;
+  color: ${(porps) => (!porps.region ? "#333" : "#ea9e94")};
+  cursor: pointer;
+  &:hover {
+    color: #ea9e94;
+  }
+`;
 
+export default function Main({ lists, setLists }) {
   const regions = ["서울", "경기", "인천", "대구", "부산", "제주"];
 
-  const [isRegionShown, setIsRegionShown] = useState(true);
-  const [isSeoulShown, setIsSeoulShown] = useState(true);
-  const [isSuwonShown, setIsSuwonShown] = useState(true);
-  const [isIncheonShown, setIsIncheonShown] = useState(true);
-  const [isDaeguShown, setIsDaeguShown] = useState(true);
-  const [isBusanShown, setIsBusanShown] = useState(true);
-  const [isJejuShown, setIsJejuShown] = useState(true);
-
+  const [seletedRegion, setSeletedRegion] = useState("전국");
+  console.log(lists);
   return (
     <div>
       <StUl>
-        <li>
-          <a
-            onClick={() => {
-              setIsRegionShown(true);
-              setIsSeoulShown(true);
-              setIsSuwonShown(true);
-              setIsIncheonShown(true);
-              setIsDaeguShown(true);
-              setIsBusanShown(true);
-              setIsJejuShown(true);
-            }}
-          >
-            전국
-          </a>
-        </li>
-        <li>
-          <a
-            onClick={() => {
-              setIsRegionShown(false);
-              setIsSeoulShown(true);
-              setIsSuwonShown(false);
-              setIsIncheonShown(false);
-              setIsDaeguShown(false);
-              setIsBusanShown(false);
-              setIsJejuShown(false);
-            }}
-          >
-            서울
-          </a>
-        </li>
-        <li>
-          <a
-            onClick={() => {
-              setIsRegionShown(false);
-              setIsSeoulShown(false);
-              setIsSuwonShown(true);
-              setIsIncheonShown(false);
-              setIsDaeguShown(false);
-              setIsBusanShown(false);
-              setIsJejuShown(false);
-            }}
-          >
-            경기
-          </a>
-        </li>
-        <li>
-          <a
-            onClick={() => {
-              setIsRegionShown(false);
-              setIsSeoulShown(false);
-              setIsSuwonShown(false);
-              setIsIncheonShown(true);
-              setIsDaeguShown(false);
-              setIsBusanShown(false);
-              setIsJejuShown(false);
-            }}
-          >
-            인천
-          </a>
-        </li>
-        <li>
-          <a
-            onClick={() => {
-              setIsRegionShown(false);
-              setIsSeoulShown(false);
-              setIsSuwonShown(false);
-              setIsIncheonShown(false);
-              setIsDaeguShown(true);
-              setIsBusanShown(false);
-              setIsJejuShown(false);
-            }}
-          >
-            대구
-          </a>
-        </li>
-        <li>
-          <a
-            onClick={() => {
-              setIsRegionShown(false);
-              setIsSeoulShown(false);
-              setIsSuwonShown(false);
-              setIsIncheonShown(false);
-              setIsDaeguShown(false);
-              setIsBusanShown(true);
-              setIsJejuShown(false);
-            }}
-          >
-            부산
-          </a>
-        </li>
-        <li>
-          <a
-            onClick={() => {
-              setIsRegionShown(false);
-              setIsSeoulShown(false);
-              setIsSuwonShown(false);
-              setIsIncheonShown(false);
-              setIsDaeguShown(false);
-              setIsBusanShown(false);
-              setIsJejuShown(true);
-            }}
-          >
-            제주
-          </a>
-        </li>
+        <StClick
+          region={seletedRegion === "전국"}
+          onClick={() => {
+            setSeletedRegion("전국");
+          }}
+        >
+          전국
+        </StClick>
+        {regions.map((region) => {
+          return (
+            <StClick
+              region={seletedRegion === region}
+              onClick={() => {
+                setSeletedRegion(region);
+              }}
+            >
+              {region}
+            </StClick>
+          );
+        })}
       </StUl>
       <Form list={lists} setList={setLists} regions={regions} />
-      {isSeoulShown === true ? (
-        <List
-          list={lists.filter(
-            (regionsItem) => regionsItem.region === regions[0]
-          )}
-          setList={setLists}
-        />
-      ) : (
-        ""
-      )}
-      {isSuwonShown === true ? (
+      {
+        // 클릭한 region이 그 region이거나, 전국이라는 region이거나
         <List
           list={lists.filter((regionsItem) => {
-            return regionsItem.region === regions[1];
+            if (seletedRegion === "전국") {
+              return regionsItem;
+            }
+            return regionsItem.region === seletedRegion;
           })}
-          setList={setLists}
         />
-      ) : (
-        ""
-      )}
-      {isIncheonShown === true ? (
-        <List
-          list={lists.filter(
-            (regionsItem) => regionsItem.region === regions[2]
-          )}
-          setList={setLists}
-        />
-      ) : (
-        ""
-      )}
-      {isDaeguShown === true ? (
-        <List
-          list={lists.filter(
-            (regionsItem) => regionsItem.region === regions[3]
-          )}
-          setList={setLists}
-        />
-      ) : (
-        ""
-      )}
-      {isBusanShown === true ? (
-        <List
-          list={lists.filter(
-            (regionsItem) => regionsItem.region === regions[4]
-          )}
-          setList={setLists}
-        />
-      ) : (
-        ""
-      )}
-      {isJejuShown === true ? (
-        <List
-          list={lists.filter(
-            (regionsItem) => regionsItem.region === regions[5]
-          )}
-          setList={setLists}
-        />
-      ) : (
-        ""
-      )}
+      }
     </div>
   );
 }

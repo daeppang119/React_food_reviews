@@ -1,19 +1,32 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const StBg = styled.div`
-  background-image: url(https://cdn.dribbble.com/userupload/10466957/file/original-60dc882fef68a12c9e58da0a91bef268.jpg?resize=752x);
+import imgLogo from "../assets/logo.png";
+
+const StHeader = styled.header`
+  position: relative;
+  height: 8rem;
 `;
 const StH1 = styled.h1`
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 2rem 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const StLogo = styled.img`
+  width: 200px;
 `;
 
 export default function Header() {
   return (
-    <StBg>
-      <StH1>지역맛집 리스트</StH1>
-    </StBg>
+    <StHeader>
+      <StH1>
+        <Link to="/">
+          <StLogo src={imgLogo} alt="logo imge" />
+        </Link>
+      </StH1>
+    </StHeader>
   );
 }
