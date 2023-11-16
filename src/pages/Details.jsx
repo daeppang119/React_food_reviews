@@ -6,7 +6,7 @@ export default function Details({ lists, setLists }) {
   const params = useParams();
 
   const foundData = lists.find((item) => {
-    return item.id === Number(params.id);
+    return item.id === params.id;
   });
 
   const navigate = useNavigate();
@@ -14,9 +14,7 @@ export default function Details({ lists, setLists }) {
   const deletBtn = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       const delet = (id) => {
-        return setLists(
-          lists.filter((element) => element.id !== Number(params.id))
-        );
+        return setLists(lists.filter((element) => element.id !== params.id));
       };
       delet(foundData);
       navigate("/");
@@ -25,6 +23,8 @@ export default function Details({ lists, setLists }) {
       return alert("취소됬습니다.");
     }
   };
+
+  console.log(foundData);
 
   return (
     <>
