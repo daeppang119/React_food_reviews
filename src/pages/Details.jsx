@@ -1,19 +1,30 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Profile from "../assets/profile.png";
 
 export default function Details({ lists, setLists }) {
   const params = useParams();
 
-  const deletBtn = (id) => {
-    return setLists(
-      lists.filter((element) => element.id !== Number(params.id))
-    );
-  };
-
   const foundData = lists.find((item) => {
     return item.id === Number(params.id);
   });
+
+  const navigate = useNavigate();
+
+  const deletBtn = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      const delet = (id) => {
+        return setLists(
+          lists.filter((element) => element.id !== Number(params.id))
+        );
+      };
+      delet(foundData);
+      navigate("/");
+      alert("삭제완료 되었습니다.");
+    } else {
+      return alert("취소됬습니다.");
+    }
+  };
 
   return (
     <>
@@ -30,7 +41,7 @@ export default function Details({ lists, setLists }) {
         <button onClick={() => {}}>수정</button>
         <button
           onClick={() => {
-            deletBtn(foundData.id);
+            deletBtn();
           }}
         >
           삭제

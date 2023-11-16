@@ -20,14 +20,14 @@ const StComments = styled.li`
 `;
 
 const StProfile = styled.div`
-  width: 60px;
-  height: 60px;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   margin-right: 1rem;
 `;
 
 const StCon = styled.div`
-  width: 20rem;
+  width: 10rem;
 `;
 
 const StProfileImg = styled.img`
@@ -59,7 +59,7 @@ export default function List({ list }) {
   const goToDetail = (id) => {
     navigate(`details/${id}`);
   };
-  console.log(list);
+
   return (
     <div>
       <ul>

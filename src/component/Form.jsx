@@ -61,7 +61,7 @@ export default function Form({ list, setList, regions }) {
       return alert("내용이 입력되지 않았습니다.");
     }
 
-    setList([...list, newList]);
+    setList([...list, newList].reverse());
 
     setNickNameInputValue("");
     setContextInputValue("");
