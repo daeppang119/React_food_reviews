@@ -11,6 +11,7 @@ const Router = () => {
       nickname: "대빵",
       context: "서울어디가 맛집일까?",
       region: "서울",
+      time: "2023.11.15 AM11:44",
     },
     {
       id: 2,
@@ -54,7 +55,10 @@ const Router = () => {
             path="/"
             element={<Main lists={lists} setLists={setLists} />}
           />
-          <Route path="details/:id" element={<Details />} />
+          <Route
+            path="details/:id"
+            element={<Details lists={lists} setLists={setLists} />}
+          />
         </Routes>
       </Layout>
     </BrowserRouter>

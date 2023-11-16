@@ -27,7 +27,7 @@ const StProfile = styled.div`
 `;
 
 const StCon = styled.div`
-  width: 10rem;
+  width: 20rem;
 `;
 
 const StProfileImg = styled.img`
@@ -54,25 +54,12 @@ const StDay = styled.p`
 `;
 
 export default function List({ list }) {
-  let today = new Date(); // today 객체에 Date()의 결과를 넣어줬다
-  let time = {
-    year: today.getFullYear(), //현재 년도
-    month: today.getMonth() + 1, // 현재 월
-    date: today.getDate(), // 현제 날짜
-    hours: today.getHours(), //현재 시간
-    minutes: today.getMinutes(), //현재 분
-  };
-
-  let amPm = time.date < 12 ? "AM" : "PM";
-
-  let timeString = `${time.year}.${time.month}.${time.date} ${amPm}${time.hours}:${time.minutes}`;
-
   const navigate = useNavigate();
 
   const goToDetail = (id) => {
     navigate(`details/${id}`);
   };
-
+  console.log(list);
   return (
     <div>
       <ul>
@@ -89,7 +76,7 @@ export default function List({ list }) {
               <StCon>
                 <StNickname>{element.nickname}</StNickname>
                 <StContext>{element.context}</StContext>
-                <StDay>{timeString}</StDay>
+                <StDay>{element.time}</StDay>
               </StCon>
             </StComments>
           );

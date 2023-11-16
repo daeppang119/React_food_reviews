@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Form from "./Form";
 import List from "./List";
+
 import styled from "styled-components";
 
 const StUl = styled.ul`
@@ -22,7 +23,7 @@ export default function Main({ lists, setLists }) {
   const regions = ["서울", "경기", "인천", "대구", "부산", "제주"];
 
   const [seletedRegion, setSeletedRegion] = useState("전국");
-  console.log(lists);
+
   return (
     <div>
       <StUl>
