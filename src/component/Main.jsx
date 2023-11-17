@@ -4,6 +4,10 @@ import List from "./List";
 
 import styled from "styled-components";
 
+const StMain = styled.div`
+  width: 25rem;
+`;
+
 const StUl = styled.ul`
   display: flex;
   justify-content: space-between;
@@ -25,7 +29,7 @@ export default function Main({ lists, setLists }) {
   const [seletedRegion, setSeletedRegion] = useState("전국");
 
   return (
-    <div>
+    <StMain>
       <StUl>
         <StClick
           region={seletedRegion === "전국"}
@@ -60,6 +64,6 @@ export default function Main({ lists, setLists }) {
           })}
         />
       }
-    </div>
+    </StMain>
   );
 }

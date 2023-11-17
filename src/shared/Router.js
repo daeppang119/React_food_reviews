@@ -51,7 +51,7 @@ const Router = () => {
   ];
 
   const [lists, setLists] = useState(initialState);
-  console.log(lists);
+
   return (
     <BrowserRouter>
       <Layout>

@@ -23,11 +23,10 @@ const StProfile = styled.div`
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  margin-right: 1rem;
 `;
 
 const StCon = styled.div`
-  width: 10rem;
+  width: 18rem;
 `;
 
 const StProfileImg = styled.img`

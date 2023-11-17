@@ -19,7 +19,7 @@ const StLogo = styled.img`
   width: 200px;
 `;
 
-export default function Header() {
+function Header() {
   return (
     <StHeader>
       <StH1>
@@ -30,3 +30,5 @@ export default function Header() {
     </StHeader>
   );
 }
+
+export default React.memo(Header);

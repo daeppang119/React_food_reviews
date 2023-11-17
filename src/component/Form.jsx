@@ -1,7 +1,21 @@
 import React, { useState } from "react";
 import uuid from "react-uuid";
-import Input from "./Input";
 import styled from "styled-components";
+
+const StP = styled.p`
+  line-height: 2;
+  font-size: 12px;
+`;
+const StNicknameInput = styled.input`
+  height: 2rem;
+  margin: 0.25rem 0;
+  padding: 0 1rem;
+`;
+
+const StContextInput = styled.textarea`
+  margin: 0.25rem 0;
+  padding: 1rem;
+`;
 
 const StRadio = styled.div`
   display: flex;
@@ -61,7 +75,7 @@ export default function Form({ list, setList, regions }) {
       return alert("내용이 입력되지 않았습니다.");
     }
 
-    setList([...list, newList].reverse());
+    setList([newList, ...list]);
 
     setNickNameInputValue("");
     setContextInputValue("");
@@ -69,10 +83,26 @@ export default function Form({ list, setList, regions }) {
 
   return (
     <form onSubmit={onSubmit}>
-      <p>닉네임</p>
-      <Input value={nickNameInputValue} setValue={setNickNameInputValue} />
-      <p>내용</p>
-      <Input value={contextInputValue} setValue={setContextInputValue} />
+      <StP>닉네임</StP>
+      <StNicknameInput
+        placeholder="최대 10글자까지 작성할 수 있습니다."
+        maxlength="10"
+        value={nickNameInputValue}
+        onChange={(e) => {
+          setNickNameInputValue(e.target.value);
+        }}
+      />
+      <StP>내용</StP>
+      <StContextInput
+        // cols="30"
+        rows="5"
+        placeholder="최대 100글자까지 작성할 수 있습니다."
+        maxlength="100"
+        value={contextInputValue}
+        onChange={(e) => {
+          setContextInputValue(e.target.value);
+        }}
+      ></StContextInput>
       <StRadio>{regions.map(makeChekBox)}</StRadio>
       <button>등록</button>
     </form>
