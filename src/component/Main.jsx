@@ -28,6 +28,13 @@ export default function Main({ lists, setLists }) {
 
   const [seletedRegion, setSeletedRegion] = useState("전국");
 
+  const filterList = lists.filter((regionsItem) => {
+    if (seletedRegion === "전국") {
+      return regionsItem;
+    }
+    return regionsItem.region === seletedRegion;
+  });
+
   return (
     <StMain>
       <StUl>
@@ -55,15 +62,10 @@ export default function Main({ lists, setLists }) {
       <Form list={lists} setList={setLists} regions={regions} />
       {
         // 클릭한 region이 그 region이거나, 전국이라는 region이거나
-        <List
-          list={lists.filter((regionsItem) => {
-            if (seletedRegion === "전국") {
-              return regionsItem;
-            }
-            return regionsItem.region === seletedRegion;
-          })}
-        />
+        <List list={filterList} />
       }
+      {/* {filterList.length || <div>등록된 정보가 없습니다.</div>} */}
+      {filterList.length === 0 ? <div>등록된 정보가 없습니다.</div> : null}
     </StMain>
   );
 }

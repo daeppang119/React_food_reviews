@@ -4,7 +4,6 @@ import Profile from "../assets/profile.png";
 
 export default function Details({ lists, setLists }) {
   const [isEditBtn, setIsEditBtn] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
 
   const params = useParams();
 
@@ -18,7 +17,6 @@ export default function Details({ lists, setLists }) {
 
   const editBtn = () => {
     setIsEditBtn(true);
-    setIsEdit(true);
   };
 
   const deletBtn = () => {
@@ -32,6 +30,20 @@ export default function Details({ lists, setLists }) {
     } else {
       return alert("취소됬습니다.");
     }
+  };
+
+  const completeBtn = () => {
+    const changeEdit = lists.map((item) => {
+      return item.id === foundData.id
+        ? {
+            ...item,
+            context: editText,
+          }
+        : item;
+    });
+
+    setLists(changeEdit);
+    setIsEditBtn(false);
   };
 
   return (
@@ -57,12 +69,12 @@ export default function Details({ lists, setLists }) {
         <p>{foundData.time}</p>
       </div>
       <div>
-        {isEdit === true ? (
+        {isEditBtn === true ? (
           <div>
-            <button onClick={() => {}}>수정완료</button>
+            <button onClick={completeBtn}>수정완료</button>
             <button
               onClick={() => {
-                setIsEdit(!isEdit);
+                setIsEditBtn(!isEditBtn);
               }}
             >
               수정취소

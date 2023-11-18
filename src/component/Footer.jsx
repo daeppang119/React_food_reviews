@@ -16,7 +16,7 @@ const StP = styled.p`
 export default function Footer() {
   return (
     <StFooter>
-      <StP>Copyright © 2023 YuNaPark All rights reserved.</StP>
+      <StP>Copyright &copy; 2023 YuNaPark All rights reserved.</StP>
     </StFooter>
   );
 }
