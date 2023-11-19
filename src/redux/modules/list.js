@@ -16,7 +16,7 @@ export const deletList = (payload) => {
   };
 };
 
-export const deitList = (payload) => {
+export const editList = (payload) => {
   return {
     type: EDIT_LIST,
     payload,
@@ -73,7 +73,7 @@ const initialState = {
 const list = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_LIST:
-      return { ...state, list: [...state.list, action.payload] };
+      return { ...state, list: [action.payload, ...state.list] };
     case DELET_LIST:
       return {
         ...state,
@@ -82,7 +82,14 @@ const list = (state = initialState, action) => {
     case EDIT_LIST:
       return {
         ...state,
-        list: action.payload,
+        list: state.list.map((item) => {
+          return item.id === action.payload.id
+            ? {
+                ...item,
+                context: action.payload.context,
+              }
+            : item;
+        }),
       };
     default:
       return state;

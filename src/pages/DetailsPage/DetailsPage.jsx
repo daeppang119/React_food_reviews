@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Profile from "../../assets/profile.png";
 import { useDispatch, useSelector } from "react-redux";
-import { deletList, deitList } from "../../redux/modules/list";
+import { deletList, editList } from "../../redux/modules/list";
 
 export default function DetailsPage() {
   const [isEditBtn, setIsEditBtn] = useState(false);
@@ -42,23 +42,25 @@ export default function DetailsPage() {
   };
 
   const completeBtn = () => {
-    const changeEdit = lists.map((item) => {
-      return item.id === foundData.id
-        ? {
-            ...item,
-            context: editText,
-          }
-        : item;
-    });
+    // const changeEdit = lists.map((item) => {
+    //   return item.id === foundData.id
+    //     ? {
+    //         ...item,
+    //         context: editText,
+    //       }
+    //     : item;
+    // });
+    const changeEdit = editList({ id: foundData.id, context: editText });
 
-    setLists(changeEdit);
+    // setLists(changeEdit);
+    dispatch(changeEdit);
     setIsEditBtn(false);
   };
 
   return (
     <>
       <div>
-        <img src={Profile} alt="default profile " />
+        <img src={Profile} alt="default profile" />
       </div>
       <div>
         <p>{foundData.region}</p>
@@ -98,7 +100,6 @@ export default function DetailsPage() {
             수정
           </button>
         )}
-
         <button
           onClick={() => {
             deletBtn();

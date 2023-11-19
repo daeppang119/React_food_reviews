@@ -4,4 +4,13 @@ export const GlobalStyle = createGlobalStyle`
     &::-webkit-scrollbar {
       display: none;
     }}
+    input,
+    textarea {
+      box-sizing: border-box;
+      width: 100%;
+      border: 0;
+      border-radius: 4px;
+      outline: none;
+      background-color: rgb(233, 233, 233);
+    }
 `;
