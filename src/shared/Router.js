@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Main from "../component/Main";
+import Main from "../pages/Main";
 import Details from "../pages/Details";
 import Layout from "./Layout";
 

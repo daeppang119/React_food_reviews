@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Form from "./Form";
-import List from "./List";
+import Form from "../component/Form";
+import List from "../component/List";
 
 import styled from "styled-components";
 
