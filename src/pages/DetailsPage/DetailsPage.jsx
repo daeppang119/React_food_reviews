@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Profile from "../assets/profile.png";
+import Profile from "../../assets/profile.png";
+import { useDispatch, useSelector } from "react-redux";
+import { deletList, deitList } from "../../redux/modules/list";
 
-export default function Details({ lists, setLists }) {
+export default function DetailsPage() {
   const [isEditBtn, setIsEditBtn] = useState(false);
+
+  const lists = useSelector((state) => {
+    return state.list.list;
+  });
+
+  const dispatch = useDispatch();
 
   const params = useParams();
 
@@ -22,9 +30,10 @@ export default function Details({ lists, setLists }) {
   const deletBtn = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       const delet = (id) => {
-        return setLists(lists.filter((element) => element.id !== params.id));
+        // return setLists(lists.filter((element) => element.id !== params.id));
+        return dispatch(deletList(id));
       };
-      delet(foundData);
+      delet(foundData.id);
       navigate("/");
       alert("삭제완료 되었습니다.");
     } else {

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import Profile from "../assets/profile.png";
+import Profile from "../../assets/profile.png";
 
 const StComments = styled.li`
   border: 1px solid #666;

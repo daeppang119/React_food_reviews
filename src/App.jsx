@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Router from "./shared/Router";
 import { GlobalStyle } from "./GlobalStyle";
 

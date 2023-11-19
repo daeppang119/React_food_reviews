@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import uuid from "react-uuid";
 import styled from "styled-components";
+import { updateList } from "../../redux/modules/list";
 
 const StP = styled.p`
   line-height: 2;
@@ -22,7 +24,8 @@ const StRadio = styled.div`
   justify-content: space-between;
 `;
 
-export default function Form({ list, setList, regions }) {
+export default function Form({ regions }) {
+  const dispatch = useDispatch();
   const [nickNameInputValue, setNickNameInputValue] = useState("");
   const [contextInputValue, setContextInputValue] = useState("");
 
@@ -75,7 +78,7 @@ export default function Form({ list, setList, regions }) {
       return alert("내용이 입력되지 않았습니다.");
     }
 
-    setList([newList, ...list]);
+    dispatch(updateList(newList));
 
     setNickNameInputValue("");
     setContextInputValue("");
@@ -89,7 +92,8 @@ export default function Form({ list, setList, regions }) {
         maxlength="10"
         value={nickNameInputValue}
         onChange={(e) => {
-          setNickNameInputValue(e.target.value);
+          const { value } = e.target;
+          setNickNameInputValue(value);
         }}
       />
       <StP>내용</StP>
@@ -100,7 +104,8 @@ export default function Form({ list, setList, regions }) {
         maxlength="100"
         value={contextInputValue}
         onChange={(e) => {
-          setContextInputValue(e.target.value);
+          const { value } = e.target;
+          setContextInputValue(value);
         }}
       ></StContextInput>
       <StRadio>{regions.map(makeChekBox)}</StRadio>

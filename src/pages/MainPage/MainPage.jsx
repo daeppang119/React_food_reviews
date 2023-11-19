@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import Form from "../component/Form";
-import List from "../component/List";
+import Form from "../../component/Form";
+import List from "../../component/List";
 
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const StMain = styled.div`
   width: 25rem;
@@ -23,10 +24,14 @@ const StClick = styled.li`
   }
 `;
 
-export default function Main({ lists, setLists }) {
+export default function MainPage() {
   const regions = ["서울", "경기", "인천", "대구", "부산", "제주"];
 
   const [seletedRegion, setSeletedRegion] = useState("전국");
+
+  const lists = useSelector((state) => {
+    return state.list.list;
+  });
 
   const filterList = lists.filter((regionsItem) => {
     if (seletedRegion === "전국") {
@@ -59,7 +64,7 @@ export default function Main({ lists, setLists }) {
           );
         })}
       </StUl>
-      <Form list={lists} setList={setLists} regions={regions} />
+      <Form regions={regions} />
       {
         // 클릭한 region이 그 region이거나, 전국이라는 region이거나
         <List list={filterList} />
