@@ -1,3 +1,6 @@
+🚩 배포
+https://react-food-reviews-git-props-drilling-dea-ppangs-projects.vercel.app/
+
 🚩 branch
 
 - props drilling
@@ -12,6 +15,9 @@
 - 상세화면에서 header logo클릭하면 메인화면으로 이동
 - 상세화면에서 내용 수정, 삭제 구현
 
-  <img src="./src/assets/homepage.png">
+## 메인페이지
 
+  <img src="./src/assets/homepage.png">
+  
+## 상세페이지
   <img src="./src/assets/details.png">
