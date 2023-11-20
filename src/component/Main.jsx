@@ -23,6 +23,11 @@ const StClick = styled.li`
   }
 `;
 
+const StNoInformation = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export default function Main({ lists, setLists }) {
   const regions = ["서울", "경기", "인천", "대구", "부산", "제주"];
 
@@ -60,12 +65,13 @@ export default function Main({ lists, setLists }) {
         })}
       </StUl>
       <Form list={lists} setList={setLists} regions={regions} />
-      {
-        // 클릭한 region이 그 region이거나, 전국이라는 region이거나
+      {filterList.length === 0 ? (
+        <StNoInformation>
+          {seletedRegion}지역의 정보가 없습니다.
+        </StNoInformation>
+      ) : (
         <List list={filterList} />
-      }
-      {/* {filterList.length || <div>등록된 정보가 없습니다.</div>} */}
-      {filterList.length === 0 ? <div>등록된 정보가 없습니다.</div> : null}
+      )}
     </StMain>
   );
 }

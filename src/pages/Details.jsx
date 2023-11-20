@@ -1,6 +1,25 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
 import Profile from "../assets/profile.png";
+
+const StCard = styled.div`
+  width: 20rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const StProfileImg = styled.img`
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+  border-radius: 50%;
+`;
+
+const StCon = styled.div`
+  width: 13rem;
+`;
 
 export default function Details({ lists, setLists }) {
   const [isEditBtn, setIsEditBtn] = useState(false);
@@ -47,57 +66,59 @@ export default function Details({ lists, setLists }) {
   };
 
   return (
-    <>
+    <StCard>
       <div>
-        <img src={Profile} alt="default profile " />
+        <StProfileImg src={Profile} alt="default profile " />
       </div>
-      <div>
-        <p>{foundData.region}</p>
-        <p>{foundData.nickname}</p>
-        {isEditBtn === true ? (
-          <textarea
-            value={editText}
-            onChange={(e) => {
-              setEditText(e.target.value);
-            }}
-          >
-            {foundData.context}
-          </textarea>
-        ) : (
-          <p>{foundData.context}</p>
-        )}
-        <p>{foundData.time}</p>
-      </div>
-      <div>
-        {isEditBtn === true ? (
-          <div>
-            <button onClick={completeBtn}>수정완료</button>
-            <button
-              onClick={() => {
-                setIsEditBtn(!isEditBtn);
+      <StCon>
+        <div>
+          <p>{foundData.region}</p>
+          <p>{foundData.nickname}</p>
+          {isEditBtn === true ? (
+            <textarea
+              value={editText}
+              onChange={(e) => {
+                setEditText(e.target.value);
               }}
             >
-              수정취소
+              {foundData.context}
+            </textarea>
+          ) : (
+            <p>{foundData.context}</p>
+          )}
+          <p>{foundData.time}</p>
+        </div>
+        <div>
+          {isEditBtn === true ? (
+            <>
+              <button onClick={completeBtn}>수정완료</button>
+              <button
+                onClick={() => {
+                  setIsEditBtn(!isEditBtn);
+                }}
+              >
+                수정취소
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={() => {
+                editBtn();
+              }}
+            >
+              수정
             </button>
-          </div>
-        ) : (
+          )}
+
           <button
             onClick={() => {
-              editBtn();
+              deletBtn();
             }}
           >
-            수정
+            삭제
           </button>
-        )}
-
-        <button
-          onClick={() => {
-            deletBtn();
-          }}
-        >
-          삭제
-        </button>
-      </div>
-    </>
+        </div>
+      </StCon>
+    </StCard>
   );
 }
