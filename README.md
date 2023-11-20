@@ -123,3 +123,11 @@
 - (15) context 로 관리중이던 모든 것을 redux 로 리팩터링
   - 숙련주차 강의에서 배운 오리지널 redux 를 이용하셔야 합니다. 심화주차에서 배울 redux-toolkit을 미리 적용하시면 안됩니다.
   - 강의에서 배운대로 ducks 패턴에 따라 리덕스 모듈을 작성합니다.
+
+<p align="center">
+  <img src="./src/assets/homepage.png">
+</p>
+
+<p align="center">
+  <img src="./src/assets/details.png">
+</p>
