@@ -1,6 +1,6 @@
-☝ 필수 구현 사항
+👉 필수 구현 사항
 
-- 팬레터 CRUD 구현 (작성, 조회, 수정, 삭제)
+- CRUD 구현 (작성, 조회, 수정, 삭제)
 - 아티스트별 게시물 조회 기능 구현 (Home - Read)
 - 원하는 아티스트에게 팬레터 등록 구현 (Home - Create)
 - 팬레터 상세 화면 구현 (Detail - Read)
@@ -13,15 +13,6 @@
 - styled-components에 props를 넘김으로 인한 조건부 스타일링 적용
   - 아티스트 선택탭에 적용해 보세요
 - 팬레터 등록 시 id는 uuid 라이브러리를 이용(https://www.npmjs.com/package//uuid)
-
-👉 과제는 Props Drilling → Context API → Redux 순으로 각각 별도의 브랜치를 만들어 제출해야 합니다.
-
-- 제출된 깃헙에는 props-drilling, context, redux 라는 이름의 각각의 브랜치명이 있어야 합니다.
-- props-drilling 브랜치에서는 context나 redux 없이 useState만으로 상태관리해서 코드를 작성합니다.
-- props-drilling 으로 코드를 모두 작성 및 커밋을 완료했으면 context 브랜치로 생성 및 이동합니다.
-- context 브랜치에서는 props-drilling으로 작업한 코드에서 react context API를 사용하여 전역상태를 이용한 코드로 리팩터링합니다.
-- context 브랜치에서 리팩터링 및 커밋을 완료했으면 redux 브랜치 생성 및 이동합니다.
-- redux 브랜치에서는 context api로 전역상태를 관리한 코드를 모두 redux 라이브러리를 이용한 코드로 리팩터링합니다.
 
 📌 과제 진행 순서 안내
 
